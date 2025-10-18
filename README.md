@@ -90,12 +90,12 @@ S3 Archived Zone (Historical Files)
 
 ## 🚀 Execution Flow
 
-1. Upload new CSV files to the **raw_zone** in S3.
-2. **Glue Crawler** detects the schema and updates the **Glue Catalog**.
-3. **Glue Job** (PySpark script) processes and merges the data into **Delta Lake tables**.
-4. Processed data is stored in **lakehouse-dwh/** for analytics.
-5. Processed CSVs are automatically **archived**.
-6. Data can be queried directly using **Athena**, **Redshift Spectrum**, or BI tools like **QuickSight**.
+1. Upload new CSV files to the **raw_zone/** in S3.  
+2. **AWS Glue Job** (PySpark ETL) reads the raw CSV files directly from S3, performs transformations, and writes the curated data into **Delta Lake tables** in the `lakehouse-dwh/` zone.  
+3. After the Delta tables are created or updated, the **AWS Glue Crawler** scans the curated zone to detect or refresh the schema in the **Glue Catalog**, making the tables queryable.  
+4. The curated data in **Delta format** can then be queried seamlessly using **Athena**, **Redshift Spectrum**, or visualization tools like **QuickSight**.  
+5. Once processing completes, the original raw files are automatically moved to the **archived/** zone for historical tracking and auditability.  
+
 
 ---
 
