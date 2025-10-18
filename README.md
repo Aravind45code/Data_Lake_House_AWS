@@ -10,25 +10,20 @@ The system automatically ingests CSV files, performs ETL transformations, applie
 
 ## 🏗️ Architecture
 
-```
-
 Raw Data (CSV)
 ↓
-AWS S3 (Raw Zone)
+S3 (Raw Zone)
 ↓
-AWS Glue Crawler → AWS Glue Catalog (Schema Detection)
+Glue Job (PySpark ETL)
 ↓
-AWS Glue Job (PySpark ETL)
+Delta Lake (Curated Zone)
 ↓
-Delta Lake on S3 (Curated Zone)
+Glue Crawler → Glue Catalog (Schema Detection & Update)
 ↓
-AWS Glue Catalog (Updated Metadata)
-↓
-Athena / Redshift / QuickSight for Analytics
+Athena / Redshift / QuickSight (Analytics Layer)
 ↓
 S3 Archived Zone (Historical Files)
 
-```
 
 ---
 
