@@ -7,7 +7,7 @@ It combines the **flexibility of data lakes** with the **consistency and reliabi
 The system automatically ingests CSV files, performs ETL transformations, applies UPSERT logic via Delta Lake, and maintains schema consistency across all layers.
 
 ---
-
+```
 ## 🏗️ Architecture
 
 Raw Data (CSV)
@@ -24,7 +24,7 @@ Athena / Redshift / QuickSight (Analytics Layer)
 ↓
 S3 Archived Zone (Historical Files)
 
-
+```
 ---
 
 ## ⚙️ Components and Their Roles
